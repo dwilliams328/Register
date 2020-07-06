@@ -8,6 +8,8 @@ public class ScannedItem {
     private double price;
     private double saleTaxAmount;
     private double importTaxAmount;
+    public double grandTotal;
+    public double totalTaxesApplied;
 
 
     public ScannedItem(){
@@ -15,6 +17,8 @@ public class ScannedItem {
         this.quantity = 0;
         this.price = 0;
         this.saleTaxAmount = 0.0;
+        //this.grandTotal = 0.0;
+        this.totalTaxesApplied = 0.0;
     }
 
     public ScannedItem(String item, int quantity, double price){
@@ -45,18 +49,26 @@ public class ScannedItem {
     }
 
     public double getImportTaxAmount(){
-        return this.saleTaxAmount;
+        return this.importTaxAmount;
     }
 
     public void setImportTaxAmount(double importTaxAmount){
         this.importTaxAmount = importTaxAmount;
     }
 
+    public double getGrandTotal(){
+        return this.grandTotal;
+    }
+
+    public double getTotalTaxesApplied(){
+        return this.totalTaxesApplied;
+    }
+
 
 
     @Override
     public String toString(){
-        String product = "Object " + this.item;
+        String product = "This object is a " + this.item;
 
         return product;
 

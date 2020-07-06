@@ -11,42 +11,55 @@ import java.util.List;
 public class TaxCalculator {
 
     private static ArrayList<String> exemptItem;
-    private static String importKey = "Import";
+    private static String importKey = "import";
 
     //On Instantiation, create exemptItem list
+    //To Do - make exempt list and import key Case insensitive :)
     public TaxCalculator(){
         this.exemptItem = new ArrayList<>();
-        this.exemptItem.add("Book");
-        this.exemptItem.add("Pill");
+        this.exemptItem.add("book");
+        this.exemptItem.add("pill");
 
         //Covers chocolate bar, imported box of chocolate etc.
-        this.exemptItem.add("Chocolate");
+        this.exemptItem.add("chocolate");
     }
 
-    /* ROAD BLOCK-ISH. Data has to exactly match exemptItem(etc) as oppose to substringing.
-       Probably has to do with indexOf() on a list.*/
     public static ScannedItem calculate(ScannedItem item){
+        double saleTaxAmount = 0.0;
+        double importTaxAmount = 0.0;
+        //Check if goods are exempt
+        int i = 0;
+        boolean isExempt = false;
 
-        //Store basic sales TAX AMOUNT - Store -1 if item is not in list
-        int isExempt = TaxCalculator.exemptItem.indexOf(item.getItem());
+        while (i < TaxCalculator.exemptItem.size()){
+            isExempt = item.getItem().contains(TaxCalculator.exemptItem.get(i));
 
-        //If isExempt == -1, then item is in list and therefore is exempt from basic sales taxes
-        if (isExempt == -1){
-            double saleTaxAmount = (item.getPrice() * .10);
+            if(isExempt){
+                break;
+            }
 
-            item.setSaleTaxAmount(saleTaxAmount);
-
+            i++;
         }
 
-        //Calculate & store imported good TAX AMOUNT - Stores -1 if item is not in list
-        int isImport = TaxCalculator.importKey.indexOf(item.getItem());
+        //If it's not exempt then apply basic sales tax
+        if (!isExempt){
+            saleTaxAmount = (item.getPrice() * .10);
+
+            item.setSaleTaxAmount(saleTaxAmount);
+        }
+
+        //Check if good are imported
+        boolean isImport = item.getItem().contains(TaxCalculator.importKey);
 
         //IF isImport != -1, then item is in list and therefore should have import taxes applied
-        if(isImport != -1){
-            double importTaxAmount = (item.getPrice() * .05);
+        if(isImport){
+            importTaxAmount = (item.getPrice() * .05);
 
             item.setImportTaxAmount(importTaxAmount);
         }
+
+        item.totalTaxesApplied = (item.getSaleTaxAmount() + item.getImportTaxAmount());
+        item.grandTotal = (item.getPrice() + item.totalTaxesApplied);
 
         return item;
     }

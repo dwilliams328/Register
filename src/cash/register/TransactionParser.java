@@ -13,7 +13,7 @@ public class TransactionParser {
     public ArrayList<ScannedItem> parseItemList(){
 
         //Src Data File
-        String xFileName = "C:\\Users\\David\\IdeaProjects\\ThoughtWorkTask\\src\\cash\\register\\InputFile";
+        String xFileName = "D:\\IdeaProjects\\Register\\src\\cash\\register\\InputFile3.txt";
 
         //Assign InArray Fixed length of 3 (for the 3 data file fields)
         String[] InArray = {"0","0","0"};
@@ -44,7 +44,7 @@ public class TransactionParser {
             }
         }
         catch (Exception e){
-            System.out.println(e);
+            System.out.println("something went wrong " + e);
         }
 
         return transactions;
