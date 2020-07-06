@@ -12,7 +12,7 @@ public class TransactionParser {
     //Parse txt file line; Create Instance of ScannedItem; Store Text File data into Instance Variables.
     public ArrayList<ScannedItem> parseItemList(){
 
-        //Src Data File
+        //MUST CHANGE!! --> Src Data File
         String xFileName = "D:\\IdeaProjects\\Register\\src\\cash\\register\\InputFile3.txt";
 
         //Assign InArray Fixed length of 3 (for the 3 data file fields)

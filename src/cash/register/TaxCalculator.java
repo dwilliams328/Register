@@ -58,8 +58,11 @@ public class TaxCalculator {
             item.setImportTaxAmount(importTaxAmount);
         }
 
-        item.totalTaxesApplied = (item.getSaleTaxAmount() + item.getImportTaxAmount());
-        item.grandTotal = (item.getPrice() + item.totalTaxesApplied);
+        item.itemTaxesApplied = (item.getSaleTaxAmount() + item.getImportTaxAmount());
+        item.itemTotal = (item.getPrice() + item.itemTaxesApplied);
+
+        item.grandTotal += item.itemTotal;
+        item.grandTaxTotal += item.itemTaxesApplied;
 
         return item;
     }
