@@ -1,8 +1,6 @@
 //This Class is a tool. It Accepts Objects, alters them if Tax application applicable ;)
 package cash.register;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
