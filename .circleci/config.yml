@@ -1,0 +1,16 @@
+---
+version: 2.1
+
+jobs:
+   build:
+      image: ubuntu-2004:202010-01
+      steps:
+      - checkout
+      - run:
+          name: "build the"
+          command: javac -d out src/main/java/taxCalculator/* 
+
+workflows:
+  build-artifact:
+    jobs:
+      - build
